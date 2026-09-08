@@ -1,0 +1,15 @@
+{
+  "name": "hello-world-tests",
+  "private": true,
+  "description": "Test harness for the static site. Not part of the published output.",
+  "scripts": {
+    "serve": "node ./serve.js",
+    "test:dom": "node ./dom.test.js",
+    "test:browser": "node ./browser.test.js",
+    "test:contrast": "node ./contrast.test.js"
+  },
+  "devDependencies": {
+    "jsdom": "^24.1.3",
+    "puppeteer-core": "^23.0.0"
+  }
+}

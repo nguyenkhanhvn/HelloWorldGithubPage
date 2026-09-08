@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Page not found &mdash; Hello World</title>
+
+  <!--
+    This page is intentionally self-contained. GitHub Pages serves 404.html
+    for any missing URL, at any depth, so a relative stylesheet link would
+    break on nested paths and an absolute one breaks on project sites served
+    from https://<user>.github.io/<repo>/. Inlining the styles avoids both.
+  -->
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --text: #1b1b1a;
+      --text-muted: #6b6b66;
+      --accent: #b4522f;
+      --accent-contrast: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #16171a;
+        --text: #ececea;
+        --text-muted: #9b9b96;
+        --accent: #e08a63;
+        --accent-contrast: #16171a;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      padding: 2rem 1rem;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .eyebrow {
+      margin: 0 0 0.5rem;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 8vw, 3rem);
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+    p.lead { margin: 0.25rem 0 1.75rem; color: var(--text-muted); }
+    a.button {
+      display: inline-block;
+      padding: 0.625rem 1.125rem;
+      border-radius: 10px;
+      background: var(--accent);
+      color: var(--accent-contrast);
+      font-size: 0.9375rem;
+      font-weight: 550;
+      text-decoration: none;
+    }
+    a.button:hover { opacity: 0.9; }
+    a.button:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <p class="eyebrow">Error 404</p>
+  <h1>Page not found</h1>
+  <p class="lead">The page you asked for does not exist.</p>
+
+  <!-- Resolved by JS so the link works on both user sites and project sites. -->
+  <a id="home-link" class="button" href="/">Back to home</a>
+
+  <script>
+    // On a project site the home page is /<repo>/, not /. Rebuild the link
+    // from the first path segment so "Back to home" never leaves the site.
+    (function () {
+      var segments = location.pathname.split("/").filter(Boolean);
+      var isProjectSite = location.hostname.endsWith("github.io") && segments.length > 0;
+      document.getElementById("home-link").setAttribute(
+        "href",
+        isProjectSite ? "/" + segments[0] + "/" : "/"
+      );
+    })();
+  </script>
+</body>
+</html>
